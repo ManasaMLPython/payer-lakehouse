@@ -1,0 +1,14 @@
+services:
+  spark:
+    image: apache/spark:3.5.3-scala2.12-java17-python3-ubuntu
+    container_name: spark
+    user: root
+    working_dir: /workspace
+    volumes:
+      - ../:/workspace
+      - ${USERPROFILE}/.aws:/root/.aws:ro
+      - ./spark-defaults.conf:/opt/spark/conf/spark-defaults.conf:ro
+    environment:
+      - AWS_PROFILE=default
+      - AWS_REGION=us-east-1
+    command: sleep infinity
